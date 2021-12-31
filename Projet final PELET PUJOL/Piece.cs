@@ -29,7 +29,7 @@ namespace Projet_final_PELET_PUJOL
 
         public override String ToString()
         {
-            return "The piece nb" + this.id + " is on the square " + this.square.Position;
+            return this.id + " : " + this.name;
         }
 
         public int UpdateSquare(int score, Board board, int lap)

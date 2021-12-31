@@ -14,6 +14,7 @@ namespace Projet_final_PELET_PUJOL
         //Constructeur
         public Board()
         {
+            this.squares_list = new List<Square>();
             for (int i = 0; i < 40; i++)
             {
                 Square square = new Square(i);

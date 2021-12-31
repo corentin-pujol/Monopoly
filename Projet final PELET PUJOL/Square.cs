@@ -25,7 +25,7 @@ namespace Projet_final_PELET_PUJOL
             {
                 if(position==9)
                 {
-                    this.name = "Jail";
+                    this.name = "Visit only / In Jail";
                 }
                 else
                 {
@@ -53,7 +53,7 @@ namespace Projet_final_PELET_PUJOL
 
         public override string ToString()
         {
-            return "Square position : " + this.position + "\n" + "Square name : " + this.name;
+            return "Square " + Convert.ToString(this.position + 1) + " : " + this.name;
         }
     }
 }
