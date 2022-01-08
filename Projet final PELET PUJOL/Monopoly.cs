@@ -48,12 +48,26 @@ namespace Projet_final_PELET_PUJOL
             foreach (Player p in players_list)
             {
                 Console.WriteLine("\n" + p.name + " choose a piece => ");
-                int nb = Convert.ToInt32(Console.ReadLine());
+                string[] my_piece = {"1", "2", "3", "4", "5", "6", "7", "8"};
+                int nb = 0;
+                string choice = Console.ReadLine();
+                while (my_piece.Contains(choice) == false)
+                {
+                    Console.WriteLine("The piece doesn't exist...\nChoose another one =>");
+                    choice = Console.ReadLine();
+                }
+                nb = Convert.ToInt32(choice);
                 //We check that the piece has not be chosen by another player
                 while (pieces_chosen.Contains(pieces_list[nb - 1]) == true)
                 {
                     Console.WriteLine("The piece is already chosen\nChoose another one =>");
-                    nb = Convert.ToInt32(Console.ReadLine());
+                    choice = Console.ReadLine();
+                    while (my_piece.Contains(choice) == false)
+                    {
+                        Console.WriteLine("The piece doesn't exist...\nChoose another one =>");
+                        choice = Console.ReadLine();
+                    }
+                    nb = Convert.ToInt32(choice);
                 }
                 p.Piece = pieces_list[nb - 1];
                 pieces_chosen.Add(pieces_list[nb - 1]);
@@ -97,6 +111,230 @@ namespace Projet_final_PELET_PUJOL
             Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
             Console.WriteLine("| 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2  |  1 |");
             Console.WriteLine("|    |JAIL|    |    |    |    |    |    |    |     |    |");
+            Console.WriteLine("|    |    |    |    |    |    |    |    |    |     |    |");
+            Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
+
+            foreach (Player player in this.players_list)
+            {
+                Console.WriteLine(player.Name + " is on the square " + Convert.ToString(player.Piece.Square.Position + 1) + ", current lap " + player.Current_lap);
+            }
+            Console.WriteLine();
+        }
+
+        public void ViewBoard2()
+        {
+            Console.WriteLine("BOARD OF THE MONOPOLY");
+            Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
+            Console.WriteLine("| 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30  | 31 |");
+            Console.WriteLine("|    |    |    |    |    |    |    |    |    |GO TO|    |");
+            string line =     "|    |    |    |    |    |    |    |    |    |JAIL |    |";
+            char[] array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 >= 21 && player_x.Piece.Square.Position+1 <=31)
+                {
+                    if(player_x.Piece.Square.Position != 30)
+                    {
+                        array[player_x.Piece.Square.Position+1 - 19 + (player_x.Piece.Square.Position+1 - 21) * 4] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
+            Console.WriteLine("| 20 |                                             | 32 |");
+            line =            "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 20)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 32)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ----                                               ---- ");
+            Console.WriteLine("| 19 |                                             | 33 |");
+            line =            "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 19)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 33)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ----                                               ---- ");
+            Console.WriteLine("| 18 |                                             | 34 |");
+            line =            "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 18)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 34)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ----                                               ---- ");
+            Console.WriteLine("| 17 |                                             | 35 |");
+            line =            "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 17)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 35)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ----                                               ---- ");
+            Console.WriteLine("| 16 |                                             | 36 |");
+            line = "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 16)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 36)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ----                                               ---- ");
+            Console.WriteLine("| 15 |                                             | 37 |");
+            line = "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 15)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 37)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ----                                               ---- ");
+            Console.WriteLine("| 14 |                                             | 38 |");
+            line = "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 14)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 38)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ----                                               ---- ");
+            Console.WriteLine("| 13 |                                             | 39 |");
+            line = "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 13)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 39)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ----                                               ---- ");
+            Console.WriteLine("| 12 |                                             | 40 |");
+            line = "|    |                                             |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 == 12)
+                {
+                    array[2] = 'X';
+                }
+                else
+                {
+                    if (player_x.Piece.Square.Position+1 == 40)
+                    {
+                        array[53] = 'X';
+                    }
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
+            Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
+            Console.WriteLine("| 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2  |  1 |");
+            Console.WriteLine("|    |JAIL|    |    |    |    |    |    |    |     |    |");
+            line =            "|    |    |    |    |    |    |    |    |    |     |    |";
+            array = line.ToCharArray();
+            foreach (Player player_x in this.players_list)
+            {
+                if (player_x.Piece.Square.Position+1 >= 1 && player_x.Piece.Square.Position+1 <= 11)
+                {
+                    array[player_x.Piece.Square.Position+1 + 52 - (player_x.Piece.Square.Position)*6] = 'X';
+                }
+            }
+            line = new string(array);
+            Console.WriteLine(line);
             Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
 
             foreach (Player player in this.players_list)
@@ -110,9 +348,27 @@ namespace Projet_final_PELET_PUJOL
         {
             Console.WriteLine("PARAMETERS OF YOUR GAME\n");
             Console.WriteLine("Choose a number of players => ");
-            int nb_players = Convert.ToInt32(Console.ReadLine());
+
+            string[] my_player = { "1", "2", "3", "4", "5", "6", "7", "8" };
+            int nb_players = 0;
+            string choice = Console.ReadLine();
+            while (my_player.Contains(choice) == false)
+            {
+                Console.WriteLine("Number of player invalid, max number is 8...\nChoose another one =>");
+                choice = Console.ReadLine();
+            }
+            nb_players = Convert.ToInt32(choice);
+
             Console.WriteLine("Choose a number of laps => ");
-            int nb_laps = Convert.ToInt32(Console.ReadLine());
+            string[] my_laps = { "1", "2", "3", "4", "5", "6", "7", "8" ,"9", "10", "11", "12", "13", "14", "15"};
+            int nb_laps = 0;
+            choice = Console.ReadLine();
+            while (my_laps.Contains(choice) == false)
+            {
+                Console.WriteLine("Number of laps invalid, max number is 15...\nChoose another one =>");
+                choice = Console.ReadLine();
+            }
+            nb_laps = Convert.ToInt32(choice);
 
             Console.WriteLine("\nNAMES OF THE PLAYERS\n");
             List<Player> players_list = new List<Player>();
@@ -132,7 +388,7 @@ namespace Projet_final_PELET_PUJOL
             {
                 for (int i = 0; i < players_list.Count() && game_end == false; i++)
                 {
-                    game.ViewBoard();
+                    game.ViewBoard2();
                     Player player = players_list[i];
                     Console.WriteLine("This is the turn of " + player.Name + "\nPress the ENTER key to roll the dices");
                     Console.ReadKey();
