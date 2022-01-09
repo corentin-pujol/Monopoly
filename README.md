@@ -87,5 +87,12 @@ This interface is implemented in the player class which stores its current state
 
 ### 5. Additional / Final remarks (optional)
 
-Factory pattern for different types of squares.
-Strategy patterns for purchases and sales or building of houses and hostels
+We had thought of using two other patterns, but Monopoly being simplified, it was difficult to implement them. However, as an opener, we will list the things we would have thought of doing if the project was a full Monopoly:
+
+Factory pattern
+First of all, we thought of using a Factory pattern to design the different types of boxes that exist in Monopoly. Indeed, the Factory pattern is a design pattern that defines an interface to create objects in a parent class, but delegates the choice of the types of objects to be created to the subclasses. 
+This choice seems judicious because by creating a parent class Case, we can specify all the details of the other cases in different subclasses such as: the stations, the distribution companies, or the various other monopolies present in the game.
+
+Strategy patterns
+In addition, we also thought of the strategy pattern to model the different choices that a player has to make when they land on a square: buy the square, pay the rent if it is already owned, draw a card if it is a luck or community square, etc...
+The strategy pattern is particularly suitable because it allows to manage more simply the behaviour of the player and the choices he can make when he arrives on a square, by modelling the different choices in subclasses to the player's one which stores an action to be performed as an attribute. This pattern is very similar to the state pattern we used above.
