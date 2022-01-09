@@ -31,9 +31,10 @@ namespace Projet_final_PELET_PUJOL
             Piece p8 = new Piece(8, "Le Fer à repasser");
 
             this.pieces_list = new List<Piece> { p1, p2, p3, p4, p5, p6, p7, p8 };
-
-            this.board = new Board();
-            this.dices = new Dices();
+            Board b = Board.GetInstance();
+            this.board = b;
+            Dices d = Dices.GetInstance();
+            this.dices = d;
         }
 
         public Dices Dices { get { return this.dices; } }
@@ -47,7 +48,7 @@ namespace Projet_final_PELET_PUJOL
             List<Piece> pieces_chosen = new List<Piece>();
             foreach (Player p in players_list)
             {
-                Console.WriteLine("\n" + p.name + " choose a piece => ");
+                Console.WriteLine("\n" + p.Name + " choose a piece => ");
                 string[] my_piece = {"1", "2", "3", "4", "5", "6", "7", "8"};
                 int nb = 0;
                 string choice = Console.ReadLine();
@@ -75,53 +76,6 @@ namespace Projet_final_PELET_PUJOL
         }
 
         public void ViewBoard()
-        {
-            Console.WriteLine("BOARD OF THE MONOPOLY");
-            Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
-            Console.WriteLine("| 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30  | 31 |");
-            Console.WriteLine("|    |    |    |    |    |    |    |    |    |GO TO|    |");
-            Console.WriteLine("|    |    |    |    |    |    |    |    |    |JAIL |    |");
-            Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
-            Console.WriteLine("| 20 |                                             | 32 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ----                                               ---- ");
-            Console.WriteLine("| 19 |                                             | 33 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ----                                               ---- ");
-            Console.WriteLine("| 18 |                                             | 34 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ----                                               ---- ");
-            Console.WriteLine("| 17 |                                             | 35 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ----                                               ---- ");
-            Console.WriteLine("| 16 |                                             | 36 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ----                                               ---- ");
-            Console.WriteLine("| 15 |                                             | 37 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ----                                               ---- ");
-            Console.WriteLine("| 14 |                                             | 38 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ----                                               ---- ");
-            Console.WriteLine("| 13 |                                             | 39 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ----                                               ---- ");
-            Console.WriteLine("| 12 |                                             | 40 |");
-            Console.WriteLine("|    |                                             |    |");
-            Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
-            Console.WriteLine("| 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2  |  1 |");
-            Console.WriteLine("|    |JAIL|    |    |    |    |    |    |    |     |    |");
-            Console.WriteLine("|    |    |    |    |    |    |    |    |    |     |    |");
-            Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
-
-            foreach (Player player in this.players_list)
-            {
-                Console.WriteLine(player.Name + " is on the square " + Convert.ToString(player.Piece.Square.Position + 1) + ", current lap " + player.Current_lap);
-            }
-            Console.WriteLine();
-        }
-
-        public void ViewBoard2()
         {
             Console.WriteLine("BOARD OF THE MONOPOLY");
             Console.WriteLine(" ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ");
@@ -339,7 +293,16 @@ namespace Projet_final_PELET_PUJOL
 
             foreach (Player player in this.players_list)
             {
-                Console.WriteLine(player.Name + " is on the square " + Convert.ToString(player.Piece.Square.Position + 1) + ", current lap " + player.Current_lap);
+                if(player.State is Jail)
+                {
+                    Console.WriteLine(player.Name + " is in jail... There is " + (3 - player.Nb_jail_turn) + " turn yet, before the end of the travel... Try to make a double !");
+                }
+                else
+                {
+                    Console.WriteLine(player.Name + " is on the square " + Convert.ToString(player.Piece.Square.Position + 1) + ", current lap " + player.Current_lap
+                        
+                        );
+                }
             }
             Console.WriteLine();
         }
@@ -349,12 +312,12 @@ namespace Projet_final_PELET_PUJOL
             Console.WriteLine("PARAMETERS OF YOUR GAME\n");
             Console.WriteLine("Choose a number of players => ");
 
-            string[] my_player = { "1", "2", "3", "4", "5", "6", "7", "8" };
+            string[] my_player = { "2", "3", "4", "5", "6", "7", "8" };
             int nb_players = 0;
             string choice = Console.ReadLine();
             while (my_player.Contains(choice) == false)
             {
-                Console.WriteLine("Number of player invalid, max number is 8...\nChoose another one =>");
+                Console.WriteLine("Number of player invalid, min number is 2 and max number is 8...\nChoose another one =>");
                 choice = Console.ReadLine();
             }
             nb_players = Convert.ToInt32(choice);
@@ -372,9 +335,12 @@ namespace Projet_final_PELET_PUJOL
 
             Console.WriteLine("\nNAMES OF THE PLAYERS\n");
             List<Player> players_list = new List<Player>();
+            string name = "";
             for (int i = 1; i <= nb_players; i++)
             {
-                players_list.Add(new Player(i));
+                Console.WriteLine("Write the name of Player " + i + " =>");
+                name = Convert.ToString(Console.ReadLine());
+                players_list.Add(new Player(i, name));
             }
 
             Monopoly game = new Monopoly(nb_players, nb_laps, players_list);
@@ -388,13 +354,15 @@ namespace Projet_final_PELET_PUJOL
             {
                 for (int i = 0; i < players_list.Count() && game_end == false; i++)
                 {
-                    game.ViewBoard2();
+                    game.ViewBoard();
                     Player player = players_list[i];
                     Console.WriteLine("This is the turn of " + player.Name + "\nPress the ENTER key to roll the dices");
                     Console.ReadKey();
 
                     game.Dices.Throw_dice();
                     Console.WriteLine(game.Dices.ToString());
+                    IState state_svg = player.State;
+                    Console.WriteLine("Le joueur est : " + state_svg.ToString());
                     player.PlayTurn(game.Dices.Score1, game.Dices.Score2, game.board);
 
                     if (player.Current_lap == game.nb_laps)
@@ -405,7 +373,7 @@ namespace Projet_final_PELET_PUJOL
                     else
                     {
                         int cpt = 1;
-                        while (game.Dices.Score1 == game.Dices.Score2 && cpt < 3 && player.Nb_jail_turn == 0) //if the player make a double, he rolls the dice again
+                        while (game.Dices.Score1 == game.Dices.Score2 && cpt < 3 && player.Nb_jail_turn == 0 && state_svg is OutJail) //if the player make a double, he rolls the dice again
                         {
                             Console.WriteLine("\nThis is the turn of " + player.Name + "\nPress the ENTER key to roll the dices");
                             Console.ReadKey();
@@ -416,6 +384,7 @@ namespace Projet_final_PELET_PUJOL
                         }
                         if (cpt == 3) //if he made three time a double, he goes to jail
                         {
+                            player.ChangeState(new Jail(player));
                             player.Piece.Square = game.board.Squares_list[9];
                             player.Nb_jail_turn += 1;
                             Console.WriteLine("You have made a double for the third time...\nYou go to Jail");
@@ -424,7 +393,6 @@ namespace Projet_final_PELET_PUJOL
                         Console.WriteLine("\nPress the ENTER key to go to the next player's turn");
                         Console.ReadKey();
                         Console.Clear();
-
                     }
                 }
             }

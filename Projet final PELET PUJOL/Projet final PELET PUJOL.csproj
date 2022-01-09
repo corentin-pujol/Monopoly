@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\..\..\Downloads\Monopoly svg.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="IState.cs" />
     <Compile Include="Jail.cs" />
+    <Compile Include="Monopoly.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="OutJail.cs" />
     <Compile Include="Piece.cs" />
