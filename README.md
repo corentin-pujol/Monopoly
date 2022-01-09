@@ -82,9 +82,6 @@ This interface is implemented in the player class which stores its current state
 
 ![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/6.png)
 
-
-### 4. Test cases (description of the employed techniques; specification of at least 2 executed test cases, a sample of input data (if present), expected and obtained results) 
-
 ### 5. Additional / Final remarks (optional)
 
 We had thought of using two other patterns, but Monopoly being simplified, it was difficult to implement them. However, as an opener, we will list the things we would have thought of doing if the project was a full Monopoly:
