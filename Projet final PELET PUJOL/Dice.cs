@@ -11,9 +11,10 @@ namespace Projet_final_PELET_PUJOL
         //Champ
         int score1;
         int score2;
+        private static Dices instance;
 
         //Constructeur
-        public Dices()
+        private Dices()
         {
             this.score1 = 0;
             this.score2 = 0;
@@ -32,6 +33,15 @@ namespace Projet_final_PELET_PUJOL
         public override string ToString()
         {
             return "Dice 1 : " + this.score1 + "\nDice 2 : " + this.score2;
+        }
+
+        public static Dices GetInstance()
+        {
+            if(instance==null)
+            {
+                instance = new Dices();
+            }
+            return instance;
         }
 
         //Méthodes

@@ -6,26 +6,21 @@ using System.Threading.Tasks;
 
 namespace Projet_final_PELET_PUJOL
 {
-    public class Player
+    public class Player : Object, IState
     {
-        public int id;
-        public string name;
         public int current_lap;
         public int nb_jail_turn;
         public Piece piece;
+        public IState state;
 
-        public Player(int i)
+        public Player(int id, string name) : base(id, name)
         {
-            this.id = i;
-            Console.WriteLine("Write the name of Player " + this.id + " =>");
-            this.name = Convert.ToString(Console.ReadLine());
             this.current_lap = 0;
             this.nb_jail_turn = 0;
             this.piece = null;
+            this.state = new OutJail(this);
         }
 
-        public int Id { get { return this.id; } }
-        public string Name { get { return this.name; } }
         public int Current_lap 
         { 
             get { return this.current_lap; }
@@ -41,6 +36,20 @@ namespace Projet_final_PELET_PUJOL
             get { return this.piece; }
             set { this.piece = value; }
         }
+        public void Go_In_Jail()
+        {
+            this.state.Go_In_Jail();
+        }
+        public void Go_Out_Jail()
+        {
+            this.state.Go_Out_Jail();
+        }
+        public void ChangeState(IState state)
+        {
+            this.state = state;
+        }
+        public IState State
+        { get { return this.state; } }
 
         public override String ToString()
         {
@@ -51,13 +60,14 @@ namespace Projet_final_PELET_PUJOL
         {
             int score = score1 + score2;
 
-            if (this.piece.Square.Position == 9 && this.nb_jail_turn <= 3 && this.nb_jail_turn > 0) //the player is in jail
+            if (this.state is Jail && this.nb_jail_turn<3) //the player is in jail
             {
                 if (score1 == score2)
                 {
+                    ChangeState(new OutJail(this));
                     this.current_lap = this.piece.UpdateSquare(score, board, this.current_lap);
                     this.nb_jail_turn = 0;
-                    Console.WriteLine("You get out of Jail");
+                    Console.WriteLine("You get out of Jail !");
                 }
                 else
                 {
@@ -65,15 +75,26 @@ namespace Projet_final_PELET_PUJOL
                     Console.WriteLine("You stay in Jail one more turn");
                 }
             }
-            else 
+            else
             {
-                this.current_lap = this.piece.UpdateSquare(score, board, this.current_lap);
-                this.nb_jail_turn = 0;
-                Console.WriteLine("You move to the square " + Convert.ToString(this.piece.Square.Position + 1));
+                if(this.nb_jail_turn==3)
+                {
+                    ChangeState(new OutJail(this));
+                    this.current_lap = this.piece.UpdateSquare(score, board, this.current_lap);
+                    this.nb_jail_turn = 0;
+                    Console.WriteLine("You move to the square " + Convert.ToString(this.piece.Square.Position + 1));
+                }
+                else
+                {
+                    this.current_lap = this.piece.UpdateSquare(score, board, this.current_lap);
+                    this.nb_jail_turn = 0;
+                    Console.WriteLine("You move to the square " + Convert.ToString(this.piece.Square.Position + 1));
+                }
             }
 
             if (this.piece.Square.Position == 29) //square Go to jail
             {
+                ChangeState(new Jail(this));
                 this.piece.Square = board.Squares_list[9];
                 this.nb_jail_turn += 1;
                 Console.WriteLine("You go to Jail");

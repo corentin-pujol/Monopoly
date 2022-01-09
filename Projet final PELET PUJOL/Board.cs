@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Projet_final_PELET_PUJOL
 {
-    public class Board
+    public sealed class Board
     {
         //Champ
         List<Square> squares_list;
+        private static Board instance;
 
         //Constructeur
-        public Board()
+        private Board()
         {
             this.squares_list = new List<Square>();
             for (int i = 0; i < 40; i++)
@@ -36,6 +37,15 @@ namespace Projet_final_PELET_PUJOL
                 my_square_list += e.ToString() + "\n";
             }
             return my_square_list;
+        }
+
+        public static Board GetInstance()
+        {
+            if(instance==null)
+            {
+                instance = new Board();
+            }
+            return instance;
         }
     }
 }

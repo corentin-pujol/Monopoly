@@ -6,21 +6,15 @@ using System.Threading.Tasks;
 
 namespace Projet_final_PELET_PUJOL
 {
-    public class Piece
+    public class Piece : Object 
     {
-        public int id;
-        public string name;
         public Square square;
         
-        public Piece(int i, string n)
+        public Piece(int id, string n) : base(id, n)
         {
-            this.id = i;
             this.square = new Square(0);
-            this.name = n;
         }
 
-        public int Id { get { return this.id; } }
-        public string Name { get { return this.name; } }
         public Square Square 
         { 
             get { return this.square; } 
