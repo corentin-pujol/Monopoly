@@ -63,7 +63,7 @@ This interface is implemented in the player class which stores its current state
 
 #### a)	Class diagram of the solution 
 
-![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/5.png)
+![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/5.JPG)
 
 #### b)	Sequence diagrams (at least, one sequence diagram of one solution’s use case) 
 
