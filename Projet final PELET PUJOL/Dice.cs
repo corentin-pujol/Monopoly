@@ -44,11 +44,6 @@ namespace Projet_final_PELET_PUJOL
             return instance;
         }
 
-        //Méthodes
-        /// <summary>
-        /// Method to throw the dice and update it score
-        /// </summary>
-        /// <returns></returns>
         public void Throw_dice()
         {
             Random r = new Random();
