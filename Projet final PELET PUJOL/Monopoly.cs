@@ -87,7 +87,7 @@ namespace Projet_final_PELET_PUJOL
             {
                 if (player_x.Piece.Square.Position+1 >= 21 && player_x.Piece.Square.Position+1 <=31)
                 {
-                    if(player_x.Piece.Square.Position != 30)
+                    if(player_x.Piece.Square.Position+1 != 30)
                     {
                         array[player_x.Piece.Square.Position+1 - 19 + (player_x.Piece.Square.Position+1 - 21) * 4] = 'X';
                     }
