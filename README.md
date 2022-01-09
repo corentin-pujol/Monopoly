@@ -21,7 +21,7 @@ Let's recall the definition of a Singleton pattern: it is a design pattern that 
 
 Board design and development:
 
-![](https://github.com/corentin-pujol/Monopoly/edit/main/1.JPG)
+![alt text](https://github.com/corentin-pujol/Monopoly/edit/main/1.JPG)
 
 The tray is made up of the list of Monopoly squares, as well as an instance of the Board instance class, which allows us to check in the GetInstance function whether the tray object has already been created, in which case we return the previously created tray. Its character is therefore unique in our application.
 
