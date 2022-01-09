@@ -27,14 +27,18 @@ Let's recall the definition of a Singleton pattern: it is a design pattern that 
 
 Board design and development:
 
+
 ![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/1.JPG)
+
 
 The tray is made up of the list of Monopoly squares, as well as an instance of the Board instance class, which allows us to check in the GetInstance function whether the tray object has already been created, in which case we return the previously created tray. Its character is therefore unique in our application.
 
 Dices design and development:
 Likewise for Monopoly dices, there are only two in a game of Monopoly:
 
+
 ![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/2.JPG)
+
 
 In the same way, the dice are instantiated once and only once with the same reasoning.
 
@@ -47,27 +51,37 @@ Rather than implementing all the behaviours of itself, the original object store
 
 So, this is how we wanted to model and develop the Player class:
 
+
 ![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/3.JPG)
+
 
 We have created a State interface, which allows us to define the functions that handle state changes:
  
+ 
 ![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/7.JPG)
+
 
 Here, we only have the go and get out of jail options, but if we had wanted to implement a Monopoly with all these rules, we could have put in the other states such as: On start box, On property box, On community or lucky box, On taxes box, etc...
 
 This interface is implemented in the player class which stores its current state, as well as in the state classes "Jail" which defines the state of a player in jail and "OutJail" when the player is not in jail.
 
+
 ![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/4.JPG)
+
 
 ### 3. UML diagrams
 
 #### a)	Class diagram of the solution 
 
+
 ![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/5.JPG)
+
 
 #### b)	Sequence diagrams (at least, one sequence diagram of one solution’s use case) 
 
+
 ![alt text](https://github.com/corentin-pujol/Monopoly/blob/main/6.png)
+
 
 ### 4. Test cases (description of the employed techniques; specification of at least 2 executed test cases, a sample of input data (if present), expected and obtained results) 
 
