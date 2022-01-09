@@ -8,11 +8,17 @@ Objective of the project is to simulate a simplified version of the Monopoly™ 
 ### 2. Design Hypotheses (specification and explanation of details not explicitly indicated in the project assignments, but required for the solution’s design and implementation) 
 
 Monopoly™ is a game played by 2 to 8 players, on a board with dices and pieces moving from square to square in a clockwise direction. So, to design our game, we decided to create the following set of objects:
+
 •	The dices
+
 •	The board
+
 •	The game squares
+
 •	The players
+
 •	The players' pieces
+
 •	The game
 
 #### a)	Singleton pattern
